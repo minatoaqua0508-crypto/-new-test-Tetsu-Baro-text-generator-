@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>關於我們 | 某某包子饅頭專賣店</title>
+  <meta name="description" content="某某包子饅頭專賣店，傳承手工好味道，堅持每日現作，提供肉包、素包與多款饅頭。">
+  <!-- 社群預覽（可自行換圖） -->
+  <meta property="og:title" content="關於我們 | 某某包子饅頭專賣店">
+  <meta property="og:description" content="傳承手工好味道，堅持每日現作。">
+  <meta property="og:image" content="imags/logo1">
+  <meta property="og:type" content="website">
+
+  <style>
+    /* ====== Reset & 基礎 ====== */
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: system-ui, -apple-system, "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+      color: #263238; background: #fbfbfb; line-height: 1.7;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: #0d47a1; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { width: min(1100px, 92vw); margin: 0 auto; }
+
+    /* ====== 導覽列 ====== */
+    .topbar {
+      background: #ffffffcc; backdrop-filter: blur(6px);
+      position: sticky; top: 0; z-index: 50; border-bottom: 1px solid #eceff1;
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 0;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand h1 { margin: 0; font-size: 1.2rem; letter-spacing: 0.05em; }
+    .brand-logo {
+      width: 36px; height: 36px; border-radius: 8px; background: #ef6c00;
+      display: grid; place-items: center; color: #fff; font-weight: 700;
+    }
+    .nav a { margin-left: 16px; font-weight: 600; }
+
+    /* ====== Hero ====== */
+    .hero {
+      position: relative; overflow: hidden; color: #fff;
+      background: linear-gradient(120deg, #6d4c41, #8d6e63);
+    }
+    .hero-inner { padding: clamp(64px, 12vw, 120px) 0; text-align: center; }
+    .hero h2 { margin: 0 0 10px; font-size: clamp(28px, 5vw, 48px); letter-spacing: 0.02em; }
+    .hero p { opacity: .95; margin: 8px 0 0; font-size: clamp(16px, 2.3vw, 18px); }
+
+    /* ====== 區塊標題 ====== */
+    .section { padding: 56px 0; background: #fff; }
+    .section.alt { background: #fafafa; }
+    .section h3 {
+      margin: 0 0 16px; font-size: clamp(22px, 3.2vw, 28px);
+      color: #37474f; border-left: 6px solid #ff7043; padding-left: 10px;
+    }
+    .muted { color: #607d8b; }
+
+    /* ====== 兩欄（RWD） ====== */
+    .grid-2 {
+      display: grid; gap: 24px; align-items: start;
+      grid-template-columns: 1fr; 
+    }
+    @media (min-width: 800px) { .grid-2 { grid-template-columns: 1.1fr .9fr; } }
+
+    /* ====== 關於故事文字卡 ====== */
+    .card {
+      background: #fff; border: 1px solid #eceff1; border-radius: 14px;
+      padding: clamp(16px, 2.4vw, 24px); box-shadow: 0 6px 18px rgba(0,0,0,.04);
+    }
+
+    /* ====== 產品格 ====== */
+    .products {
+      display: grid; gap: 16px; grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: 700px) { .products { grid-template-columns: repeat(4, 1fr); } }
+    .prod {
+      background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0,0,0,.03);
+    }
+    .prod div { padding: 10px 12px; }
+    .prod h4 { margin: 0 0 4px; font-size: 1rem; }
+    .price { color: #bf360c; font-weight: 700; }
+
+    /* ====== 運費表 ====== */
+    table {
+      width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,.03);
+    }
+    th, td { padding: 12px 14px; border-bottom: 1px solid #eceff1; text-align: left; }
+    th { background: #fff3e0; color: #6d4c41; }
+
+    /* ====== 公告條 ====== */
+    .notice {
+      display: flex; gap: 14px; align-items: center;
+      padding: 12px 16px; border: 1px dashed #ffb74d; border-radius: 12px;
+      background: #fff8e1; color: #8d6e63;
+    }
+    .badge { background: #ff7043; color: #fff; padding: 2px 10px; border-radius: 999px; font-size: 12px; }
+
+    /* ====== 聯絡 & 地圖 ====== */
+    .contact-list { list-style: none; padding: 0; margin: 0; }
+    .contact-list li { padding: 8px 0; }
+    .map {
+      border: 0; width: 100%; height: 320px; border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0,0,0,.04);
+    }
+
+    /* ====== 頁尾 ====== */
+    footer {
+      margin-top: 36px; background: #263238; color: #cfd8dc;
+      padding: 20px 0; font-size: 14px;
+    }
+
+    /* ====== 無障礙 ====== */
+    .skip-link {
+      position: absolute; left: -999px; top: -999px;
+    }
+    .skip-link:focus {
+      left: 12px; top: 12px; background: #000; color: #fff;
+      padding: 8px 10px; border-radius: 8px; z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主內容</a>
+
+  <!-- 導覽 -->
+  <div class="topbar" role="navigation" aria-label="主選單">
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-logo" aria-hidden="true">包</div>
+        <h1 aria-label="某某包子饅頭專賣店">某某包子饅頭專賣店</h1>
+      </div>
+      <nav>
+        <a href="#story">關於我們</a>
+        <a href="#products">產品</a>
+        <a href="#shipping">運費/付款</a>
+        <a href="#contact">聯絡資訊</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero" role="banner">
+    <div class="container hero-inner">
+      <h2>傳承手工好味道．每日現作</h2>
+      <p>從揉麵、發酵到出籠，堅持每一道工序。歡迎電話預訂與宅配。</p>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 關於／品牌故事 -->
+    <section id="story" class="section">
+      <div class="container grid-2">
+        <div class="card">
+          <h3>公司簡介</h3>
+          <p>
+            我們源自街角小攤，至今<b>傳承三代</b>。堅持採用當日新鮮食材與老麵工法，
+            肉餡嚴選前腿肉與洋蔥香氣，素包以香菇、筍丁與高麗菜調和，呈現清爽層次。
+          </p>
+          <p class="muted">— 以下文字請改成你的真實歷史／年份 —</p>
+          <ul>
+            <li><b>1950</b>：第一代創立街邊小攤</li>
+            <li><b>1988</b>：第二代擴大為門市與中央廚房</li>
+            <li><b>2015</b>：第三代導入標準化流程與低溫物流</li>
+          </ul>
+        </div>
+        <figure class="card" aria-label="手工製作過程圖片">
+          <img src="imags/logo4.jpg" alt="手工桿麵、包餡、整齊擺放待蒸的包子">
+          <figcaption class="muted">每日備料與現場製作</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 產品 -->
+    <section id="products" class="section alt">
+      <div class="container">
+        <h3>熱銷產品</h3>
+        <p class="muted">圖片與價格為示意，請依實際調整。</p>
+        <div class="products" role="list">
+          <!-- 單一產品 -->
+          <article class="prod" role="listitem">
+            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200&auto=format&fit=crop" alt="經典鮮肉包">
+            <div>
+              <h4>鮮肉包</h4>
+              <div class="price">$35</div>
+              <div class="muted">前腿肉、洋蔥、黑胡椒</div>
+            </div>
+          </article>
+          <article class="prod" role="listitem">
+            <img src="https://images.unsplash.com/photo-1575986715061-d2d3c6b28e61?q=80&w=1200&auto=format&fit=crop" alt="香菇素菜包">
+            <div>
+              <h4>香菇素菜包</h4>
+              <div class="price">$30</div>
+              <div class="muted">香菇、筍丁、高麗菜</div>
+            </div>
+          </article>
+          <article class="prod" role="listitem">
+            <img src="https://images.unsplash.com/photo-1526318472351-c75fcf070305?q=80&w=1200&auto=format&fit=crop" alt="鮮奶饅頭">
+            <div>
+              <h4>鮮奶饅頭</h4>
+              <div class="price">$20</div>
+              <div class="muted">牛奶發酵，口感綿密</div>
+            </div>
+          </article>
+          <article class="prod" role="listitem">
+            <img src="https://images.unsplash.com/photo-1625944230948-1ae5f1f1d9f1?q=80&w=1200&auto=format&fit=crop" alt="芋頭饅頭">
+            <div>
+              <h4>芋頭饅頭</h4>
+              <div class="price">$25</div>
+              <div class="muted">在地芋頭，甜而不膩</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 公告 -->
+    <section class="section">
+      <div class="container">
+        <h3>最新公告</h3>
+        <div class="notice" role="status" aria-live="polite">
+          <span class="badge">公告</span>
+          <div>
+            9/28（六）～9/30（一）員工旅遊公休；宅配照常接單，10/1 起依序出貨。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 運費/付款 -->
+    <section id="shipping" class="section alt">
+      <div class="container grid-2">
+        <div>
+          <h3>運費與付款方式</h3>
+          <p>可超取/宅配，亦可門市自取。貨到付款將由物流代收手續費。</p>
+          <table aria-label="運費與件數">
+            <thead>
+              <tr><th>件數</th><th>運費</th><th>備註</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1–2 盒</td><td>$150</td><td>常溫/低溫同費</td></tr>
+              <tr><td>3–6 盒</td><td>$180</td><td>同一地址合併計算</td></tr>
+              <tr><td>7–16 盒</td><td>$220</td><td>最多 16 盒一箱</td></tr>
+            </tbody>
+          </table>
+          <p class="muted">※ 代收（貨到付款）依物流公司規定加收。</p>
+        </div>
+        <div class="card">
+          <h3>下單方式</h3>
+          <ol>
+            <li>先以 <b>電話 / Line</b> 詢問現貨與到貨日</li>
+            <li>提供：收件人、電話、地址、品項與數量</li>
+            <li>確認總額與出貨日後安排寄出</li>
+          </ol>
+          <p class="muted">若有大量訂購或活動需求，建議提早 3–5 天預訂。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 聯絡＆地圖 -->
+    <section id="contact" class="section">
+      <div class="container grid-2">
+        <div>
+          <h3>聯絡資訊</h3>
+          <ul class="contact-list" aria-label="聯絡方式">
+            <li>電話：<a href="tel:04-12345678">04-12345678</a></li>
+            <li>地址：<a href="https://maps.google.com?q=台中市中區中山路100號" target="_blank" rel="noopener">台中市中區中山路100號</a></li>
+            <li>營業時間：週二～週日 09:00–19:00（週一公休）</li>
+            <li>社群：<a href="#" aria-label="Facebook 連結">Facebook</a>・<a href="#" aria-label="Instagram 連結">Instagram</a></li>
+          </ul>
+        </div>
+        <div>
+          <!-- 替換為你的嵌入地圖 -->
+          <iframe class="map" title="門市位置地圖（示意）"
+            src="https://www.google.com/maps?q=25.0422,121.5352&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container">
+      © <span id="year"></span> 某某包子饅頭專賣店．All Rights Reserved
+    </div>
+  </footer>
+
+  <!-- 結構化資料（請改成你自己的實際資訊） -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"LocalBusiness",
+    "name":"某某包子饅頭專賣店",
+    "address":{"@type":"PostalAddress","addressLocality":"台中市","streetAddress":"中山路100號"},
+    "telephone":"+886-4-12345678",
+    "image":"https://picsum.photos/800/600?bun",
+    "openingHours":"Tu-Su 09:00-19:00",
+    "servesCuisine":"Taiwanese",
+    "url":"https://example.com"
+  }
+  </script>
+
+  <script>
+    // 小功能：自動年份 & 公告輪播（可自行擴充）
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 如需多則公告：把文字放進陣列就會 5 秒換一條
+    const notices = [
+      "9/28（六）～9/30（一）員工旅遊公休；宅配照常接單，10/1 起依序出貨。",
+      "中秋檔期宅配量大，建議提前 3–5 天預訂。",
+      "門市自取可電話保留，超過取貨時間將釋出。"
+    ];
+    const noticeBox = document.querySelector(".notice div:last-child");
+    let idx = 0;
+    setInterval(() => {
+      idx = (idx + 1) % notices.length;
+      noticeBox.textContent = notices[idx];
+    }, 5000);
+  </script>
+</body>
+</html>
